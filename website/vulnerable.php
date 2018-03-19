@@ -1,12 +1,15 @@
 <!-- Source ihttps://www.w3schools.com/php/php_form_complete.asp -->
 <?php header("X-XSS-Protection:0"); ?>
 <!DOCTYPE HTML>  
-<html>
+<link rel='stylesheet' href='css/bootstrap.min.css'>
+<script type='text/javascript' src='js/jquery.js'></script>
+<script type='text/javascript' src='js/bootstrap.min.js'></script>
 <head>
-<style>
-.error {color: #FF0000;}
-</style>
-</head>
+  <html>
+    <style>
+      .error {color: #FF0000;}
+    </style>
+  </head>
 <body>  
 
 <?php

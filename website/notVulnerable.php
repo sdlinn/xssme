@@ -1,10 +1,14 @@
+<!-- Source ihttps://www.w3schools.com/php/php_form_complete.asp -->
 <!DOCTYPE HTML>  
+<link rel='stylesheet' href='css/bootstrap.min.css'>
+<script type='text/javascript' src='js/jquery.js'></script>
+<script type='text/javascript' src='js/bootstrap.min.js'></script>
 <html>
-<head>
-<style>
-.error {color: #FF0000;}
-</style>
-</head>
+  <head>
+    <style>
+      .error {color: #FF0000;}
+    </style>
+  </head>
 <body>  
 
 <?php
