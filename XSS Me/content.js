@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener(
 				for(var i = 0; i < num_inputs; i++)
 				{
 					if(page_inputs[i].type == 'text')
-						data.append(page_inputs[i].name, '<script>alert("vulnerable");</script>');
+						data.append(page_inputs[i].name, '<script>document.vulnerable=true;</script>');
 					else
 						data.append(page_inputs[i].name, page_inputs[i].value);
 				}
@@ -28,13 +28,13 @@ chrome.runtime.onMessage.addListener(
 
 					for(var i = 0; i < num_scripts; i++)
 					{
-						if(scripts[i].innerHTML === "alert(\"vulnerable\");")
+						if(scripts[i].innerHTML === "document.vulnerable=true;")
 							vulnerable = true;
 					}
 
 					if(vulnerable)
 					{
-						chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "&lt;script&gt;alert(\"vulnerable\");&lt;/script&gt;"});
+						chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
 					}
 					else
 					{
