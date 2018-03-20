@@ -14,6 +14,7 @@ chrome.runtime.onMessage.addListener(
 				var data = new FormData();
 
 				// add input elements to the form - if the original ones are of type text, insert XSS
+				// test script: &<script>alert("vulnerable");</script>
 				for(var i = 0; i < num_inputs; i++)
 				{
 					if(page_inputs[i].type == 'text')
