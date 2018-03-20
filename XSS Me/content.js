@@ -39,7 +39,8 @@ chrome.runtime.onMessage.addListener(
 					var vulnerable = false;
 
 					// check each script for the incidence of our XSS
-					// this will be changed later to a DOM manipulation to test different kinds of XSS strings 
+					// this will be changed later to a more generic DOM manipulation 
+					// in order to test different kinds of XSS strings 
 					for(var i = 0; i < num_scripts; i++)
 					{
 						if(scripts[i].innerHTML === "document.vulnerable=true;")
