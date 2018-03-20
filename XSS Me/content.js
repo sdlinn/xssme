@@ -1,7 +1,6 @@
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if( request.message === "do_some_stuff" ) {
-        	alert("doing stuff");
 			var page_inputs = document.getElementsByTagName("input");
 
 			var num_inputs = page_inputs.length;

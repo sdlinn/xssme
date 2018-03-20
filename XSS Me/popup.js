@@ -11,12 +11,10 @@ function testXSS(){
 chrome.runtime.onMessage.addListener( function(request,sender,sendResponse) {
 	if( request.message === "vulnerable" )
 	{
-		alert("vulnerable");
 		document.getElementById("results").innerHTML = request.details + " executed";
 	}
 	else if( request.message === "not-vulnerable" )
 	{
-		alert("not vulnerable");
 		document.getElementById("results").innerHTML = "not vulnerable";
 	}
 });
