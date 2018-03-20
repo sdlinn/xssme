@@ -17,7 +17,7 @@ chrome.runtime.onMessage.addListener(
 				for(var i = 0; i < num_inputs; i++)
 				{
 					if(page_inputs[i].type == 'text')
-						data.append(page_inputs[i].name, '<script>document.vulnerable=true;</script>');
+						data.append(page_inputs[i].name, '&<script>document.vulnerable=true;</script>');
 					else
 						data.append(page_inputs[i].name, page_inputs[i].value);
 				}
