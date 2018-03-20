@@ -1,6 +1,7 @@
+// Add listener to wait for the button press from the popup. 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        if( request.message === "do_some_stuff" ) {
+        if( request.message === "do_test" ) {
 			var page_inputs = document.getElementsByTagName("input");
 
 			var num_inputs = page_inputs.length;
