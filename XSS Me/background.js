@@ -15,7 +15,8 @@ chrome.runtime.onMessage.addListener(
 						console.log(tabs);
 						chrome.tabs.onUpdated.addListener(function (tabId , info) {
   							if (info.status === 'complete') {
-    							chrome.tabs.sendMessage(tabs.id, {"message": "do_test"} , function(response) {});		
+    							chrome.tabs.sendMessage(tabs.id, {"message": "do_test"} , function(response) {console.log(response)});		
+    							chrome.tabs.update(tab.id, {highlighted: true});
 						    }  
 						});
 				} );
