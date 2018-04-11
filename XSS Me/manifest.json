@@ -17,6 +17,7 @@
     "js": ["content.js"]
     }
 ],
+ "web_accessible_resources": ["XSS-strings.xml"],
 
 "browser_action": {
  "default_popup": "popup.html",
