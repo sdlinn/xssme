@@ -33,6 +33,8 @@ chrome.runtime.onMessage.addListener(
 					var doc = document.implementation.createHTMLDocument("example");
 					// and put the contents of the response to the XML HTTP request into the document
 					doc.documentElement.innerHTML = xhr.responseText;
+					// Send this to the background to reload the page.
+					chrome.runtime.sendMessage({message: "load_new_tab", responseText: xhr.responseText});
 
 					// select all scripts from the document and count how many there are 
 					var scripts = doc.getElementsByTagName("script");
