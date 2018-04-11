@@ -1,6 +1,10 @@
 // Add listener to wait for the button press from the popup. 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+    	if( request.message === "open_new_tab") {
+    		// Send this to the background to reload the page.
+			chrome.runtime.sendMessage({message: "load_new_tab"});
+		} else 
     	// if the message is do_test, execute script
         if( request.message === "do_test" ) {
         	// get input elements from page to create new form from them
@@ -18,7 +22,8 @@ chrome.runtime.onMessage.addListener(
 				for(var i = 0; i < num_inputs; i++)
 				{
 					if(page_inputs[i].type == 'text')
-						data.append(page_inputs[i].name, '&<script>document.vulnerable=true;</script>');
+						//data.append(page_inputs[i].name, '&<script>document.vulnerable=true;</script>');
+						data.append(page_inputs[i].name, '&<script>alert("XSS");</script>');
 					else
 						data.append(page_inputs[i].name, page_inputs[i].value);
 				}
@@ -33,9 +38,7 @@ chrome.runtime.onMessage.addListener(
 					var doc = document.implementation.createHTMLDocument("example");
 					// and put the contents of the response to the XML HTTP request into the document
 					doc.documentElement.innerHTML = xhr.responseText;
-					// Send this to the background to reload the page.
-					chrome.runtime.sendMessage({message: "load_new_tab", responseText: xhr.responseText});
-
+					document.write(xhr.responseText);					
 					// select all scripts from the document and count how many there are 
 					var scripts = doc.getElementsByTagName("script");
 					var num_scripts = scripts.length;
