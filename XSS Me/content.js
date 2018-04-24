@@ -6,7 +6,11 @@ chrome.runtime.onMessage.addListener(
 			chrome.runtime.sendMessage({message: "load_new_tab"});
 		} else 
     	// if the message is do_test, execute script
-        if( request.message === "do_test" ) {
+        /*if( request.message === "attack" ) {
+        	// perform attack on the web page.
+        } else*/ 
+    	// if the message is do_test, execute script
+        if( request.message === "attack" ) {
         	// get input elements from page to create new form from them
 			var page_inputs = document.getElementsByTagName("input");
 			var num_inputs = page_inputs.length;
@@ -34,7 +38,7 @@ chrome.runtime.onMessage.addListener(
 							if(!loop)
 								num_attack_strings = 1;
 
-							for(int i = 0; i < num_attack_strings; i++)
+							for(var i = 0; i < num_attack_strings; i++)
 							{
 								var test_string = attack_strings[i].textContent;
 
@@ -70,19 +74,21 @@ chrome.runtime.onMessage.addListener(
 									// check each script for the incidence of our XSS
 									// this will be changed later to a more generic DOM manipulation 
 									// in order to test different kinds of XSS strings 
-									for(var i = 0; i < num_scripts; i++)
-									{
-										if(scripts[i].innerHTML === "document.vulnerable=true;")
-											vulnerable = true;
-									}
+									//for(var i = 0; i < num_scripts; i++)
+									//{
+									if(document.vulnerable === true)
+										vulnerable = true;
+									//}
 
 									// report back to the popup javascript file to replace the text in the popup window
 									if(vulnerable)
 									{
+										alert("vulnerable");
 										chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
 									}
 									else
 									{
+										alert("Not vulnerable");
 										chrome.runtime.sendMessage({'message' : "not-vulnerable"});
 									}
 								};
