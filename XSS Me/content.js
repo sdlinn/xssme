@@ -1,6 +1,10 @@
 // Add listener to wait for the button press from the popup. 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+    	if( request.message === "open_new_tab") {
+    		// Send this to the background to reload the page.
+			chrome.runtime.sendMessage({message: "load_new_tab"});
+		} else 
     	// if the message is do_test, execute script
         if( request.message === "do_test" ) {
         	// get input elements from page to create new form from them
@@ -22,8 +26,15 @@ chrome.runtime.onMessage.addListener(
 			            {
 			                var xss_xml = xss_file.response;
 							var attack_strings = xss_xml.getElementsByTagName("attackString");
+							var num_attack_strings = attack_strings.length;
 
-							for(int i = 0; i < 1; i++)
+							// change loop if you don't want the test to iterate through all attack strings
+							var loop = true;
+							
+							if(!loop)
+								num_attack_strings = 1;
+
+							for(int i = 0; i < num_attack_strings; i++)
 							{
 								var test_string = attack_strings[i].textContent;
 

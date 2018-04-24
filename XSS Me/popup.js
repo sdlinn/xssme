@@ -3,7 +3,7 @@ function testXSS(){
     // Send message to content script to test the xss.
     // This is nessasary because the content script can access the DOM of the page.
     chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
-        chrome.tabs.sendMessage(tabs[0].id, {"message": "do_test"} , function(response) {
+        chrome.tabs.sendMessage(tabs[0].id, {"message": "open_new_tab"} , function(response) {
         });
     });
 }
