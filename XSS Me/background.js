@@ -8,7 +8,10 @@ chrome.runtime.onMessage.addListener(
 	    if( request.message === "load_new_tab" )
 	    {
     		read_attack_strings(null);
-	    } 
+	    } else if ( request.message === "Success" )
+	    {
+	    	console.log("Got some XSS");
+	    }
 	}
 );
 
@@ -49,7 +52,6 @@ function read_attack_strings(file_url)
 	        	console.log("XSS attack string file not found.");
 	    }
 	}
-
 	xss_file.send(null);
 }
 
@@ -71,16 +73,24 @@ function attack_page(attack_string)
 						chrome.tabs.sendMessage(tabs.id, {"message" : "attack", "tabId" : tabs.id, "attack_string" : attack_string}, 
 							function(response) 
 							{
-								console.log(attack_string + " This attack string didn't work");
-								// remove the tab now. 
-								//chrome.tabs.remove(tabs.id, function(){});
-								if (index <= 5) 
+								if (response.success)
 								{
-									attack_page(attack_strings[index++].textContent);
-								}
+									console.log(attack_string + " This attack WORKED");
+									index = num_attack_strings+1;
+								} 
 								else 
 								{
-									console.log("Tried all of the strings.");
+									console.log(attack_string + " This attack string didn't work");
+									// remove the tab now. 
+									chrome.tabs.remove(tabs.id, function(){});
+									if (index <= num_attack_strings) 
+									{
+										attack_page(attack_strings[index++].textContent);
+									}
+									else 
+									{
+										console.log("Tried all of the strings.");
+									}
 								}
 							});		
 					    }  

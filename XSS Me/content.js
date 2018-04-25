@@ -44,23 +44,27 @@ chrome.runtime.onMessage.addListener(
 
 					    if (event.data.type && (event.data.type == "FROM_PAGE")) {
 					    	// THIS IS SUCCESSFULL 
-					        alert("Successfull XSS using attack string  " + request.attack_string);
+					    	chrome.runtime.sendMessage({message: "Success"});
+					        //alert("Successfull XSS using attack string  " + request.attack_string);
+					        sendResponse({"success" : true});
 					        vulnerable = true;
 					    }
 					});
-
-					// report back to the popup javascript file to replace the text in the popup window
-					if(vulnerable)
-					{
-						alert("vulnerable");	
-						//chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
-					}
-					else
-					{
-						// send a message to background that we need to try again
-						sendResponse();
-						//chrome.runtime.sendMessage({'message' : "not-vulnerable"});
-					}
+					sleep(500).then(() => {
+  						  // Do something after the sleep!
+						// report back to the popup javascript file to replace the text in the popup window
+						if(vulnerable)
+						{
+							alert("vulnerable");	
+							//chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
+						}
+						else
+						{
+							// send a message to background that we need to try again
+							sendResponse({"success" : false});
+							//chrome.runtime.sendMessage({'message' : "not-vulnerable"});
+						}
+					})
 				};
 				// send the XML HTTP request
 				xhr.send(data);
@@ -69,3 +73,7 @@ chrome.runtime.onMessage.addListener(
         return true;
     }
 );
+
+function sleep (time) {
+	return new Promise((resolve) => setTimeout(resolve, time));
+}
