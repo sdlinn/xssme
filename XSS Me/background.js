@@ -9,33 +9,53 @@ chrome.runtime.onMessage.addListener(
 
 function read_attack_strings(file_url) 
 {
-	//open XML document containing list of scripts
+	//create new XHR to open XML document containing list of scripts
 	var xss_file = new XMLHttpRequest();
-	xss_file.open("GET", chrome.extension.getURL('XSS-strings.xml'), true);
+
+	//change XSS-strings.xml to file_url eventually
+	if(file_url == null)
+		file_url = 'XSS-strings.xml';
+
+	xss_file.open("GET", chrome.extension.getURL(file_url), true);
 	xss_file.responseType = "document";
+
+	//once the file has loaded, do stuff
 	xss_file.onreadystatechange = function ()
 	{
 	    if(xss_file.readyState === 4)
 	    {
 	        if(xss_file.status === 200 || xss_file.status == 0)
 	        {
+	        	//if the XHR succeeds, put the file response into a variable 
+	        	//and parse the elements by tag name
 	            var xss_xml = xss_file.response;
 				var attack_strings = xss_xml.getElementsByTagName("attackString");
 				var num_attack_strings = attack_strings.length;
 
-				// change loop if you don't want the test to iterate through all attack strings
-				var loop = false;
-				
-				if(!loop)
-					num_attack_strings = 5;
-
-				for(var i = 0; i < num_attack_strings; i++)
+				if(num_attack_strings == 0)
+					console.log("invalid XSS attack string file - check your formatting?");
+				else
 				{
-					attack_page(attack_strings[i].textContent); 
-	            }
+					// change loop if you don't want the test to iterate through all attack strings
+					var loop = false;
+					
+					if(!loop)
+						num_attack_strings = 1;
+
+					//iterate through attack strings...
+					for(var i = 0; i < num_attack_strings; i++)
+					{
+						//...and send them to attack_page function 
+						//that will send them to content script
+						attack_page(attack_strings[i].textContent);
+		            }
+				}
 	        }
+	        else
+	        	console.log("XSS attack string file not found.");
 	    }
 	}
+
 	xss_file.send(null);
 }
 
