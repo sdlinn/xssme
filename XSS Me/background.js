@@ -1,7 +1,7 @@
 var attack_strings;
 var num_attack_strings;
 var index = 0;
-
+//var original_tab_id;
 
 chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
@@ -41,19 +41,6 @@ function read_attack_strings(file_url)
 					console.log("invalid XSS attack string file - check your formatting?");
 				else
 				{
-					/** change loop if you don't want the test to iterate through all attack strings
-					var loop = false;
-					
-					if(!loop)
-						num_attack_strings = 1;
-
-					//iterate through attack strings...
-					for(var i = 0; i < num_attack_strings; i++)
-					{
-						//...and send them to attack_page function 
-						//that will send them to content script
-						attack_page(attack_strings[i].textContent);
-		            }**/
 		            // send first attack to the page.
 		            attack_page(attack_strings[index++].textContent);
 				}
@@ -70,12 +57,11 @@ function attack_page(attack_string)
 {
 	// get the tab id
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-				var tab = tabs[0]
-				//var text = request.responseText  				   
+			var tab = tabs[0]
 			// spawn a new tab
-			console.log(tab.id);
+			console.log("Orignal Tab id:" + tab.id);
 			chrome.tabs.duplicate(tab.id, function(tabs) {
-					console.log(tabs);
+					console.log("New ID of new tab: " + tabs);
 					chrome.tabs.onUpdated.addListener(function (tabId , info) {
 						if (info.status === 'complete') {
 						chrome.tabs.sendMessage(tabs.id, {"message" : "attack", "tabId" : tabs.id, "attack_string" : attack_string}, 
@@ -89,8 +75,8 @@ function attack_page(attack_string)
 								else {
 									console.log(attack_string + " This attack string didn't work");
 									// remove the tab now. 
-									chrome.tabs.remove(tabs.id, function(){});
-									if (index <= 5) 
+									//chrome.tabs.remove(tabs.id, function(){});
+									if (index <= 0) 
 									{
 										attack_page(attack_strings[index++].textContent);
 									}

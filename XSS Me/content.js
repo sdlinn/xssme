@@ -36,31 +36,19 @@ chrome.runtime.onMessage.addListener(
 				// add a function that will run after the XML HTTP request has loaded
 				xhr.onload = function () {
 					document.write(xhr.responseText);
-
-					// create a new HTML document so we can use DOM selectors
-					var doc = document.implementation.createHTMLDocument("example");
-					// and put the contents of the response to the XML HTTP request into the document
-					doc.documentElement.innerHTML = xhr.responseText;
-
-					// select all scripts from the document and count how many there are 
-					var scripts = doc.getElementsByTagName("script");
-					var num_scripts = scripts.length;
 					var vulnerable = false;
 
-					// check each script for the incidence of our XSS
-					// this will be changed later to a more generic DOM manipulation 
-					// in order to test different kinds of XSS strings 
-					//for(var i = 0; i < num_scripts; i++)
-					//{
-					if(document.vulnerable === true)
+					if(document.vulnerable == true)
+					{
 						vulnerable = true;
-					//}
+						alert("it worked!!!");
+					}
 
 					// report back to the popup javascript file to replace the text in the popup window
 					if(vulnerable)
 					{
 						alert("vulnerable");
-						sendResponse({"success" : true, "attack_string": request.attack_string});
+						sendResponse({"success" : true});
 						//chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
 					}
 					else
@@ -71,7 +59,6 @@ chrome.runtime.onMessage.addListener(
 						//chrome.runtime.sendMessage({'message' : "not-vulnerable"});
 					}
 				};
-
 				// send the XML HTTP request
 				xhr.send(data);
             }
