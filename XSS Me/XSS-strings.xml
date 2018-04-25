@@ -2,7 +2,7 @@
 <attacks>
 <attack>
 <attackString>
-<![CDATA[&<script>document.vulnerable=true;</script>]]>
+<![CDATA[&<script>window.postMessage({type: "FROM_PAGE"}, "*");</script>]]>
 </attackString>
 <signature>Script</signature>
 </attack>

@@ -36,20 +36,29 @@ chrome.runtime.onMessage.addListener(
 				// add a function that will run after the XML HTTP request has loaded
 				xhr.onload = function () {
 					document.write(xhr.responseText);
-					console.log("document.vulnerable = " + document.vulnerable);
+					var vulnerable = false
+					window.addEventListener("message", function(event) {
+					    // We only accept messages from ourselves
+					    if (event.source != window)
+					        return;
+
+					    if (event.data.type && (event.data.type == "FROM_PAGE")) {
+					    	// THIS IS SUCCESSFULL 
+					        alert("Successfull XSS using attack string  " + request.attack_string);
+					        vulnerable = true;
+					    }
+					});
 
 					// report back to the popup javascript file to replace the text in the popup window
-					if(document.vulnerable == true)
+					if(vulnerable)
 					{
-						alert("vulnerable");
-						sendResponse({"success" : true});
+						alert("vulnerable");	
 						//chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
 					}
 					else
 					{
 						// send a message to background that we need to try again
-						sendResponse({"success" : false});
-						//alert("Not vulnerable");
+						sendResponse();
 						//chrome.runtime.sendMessage({'message' : "not-vulnerable"});
 					}
 				};

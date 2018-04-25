@@ -71,24 +71,16 @@ function attack_page(attack_string)
 						chrome.tabs.sendMessage(tabs.id, {"message" : "attack", "tabId" : tabs.id, "attack_string" : attack_string}, 
 							function(response) 
 							{
-								console.log(response)
-								if(response.success)
+								console.log(attack_string + " This attack string didn't work");
+								// remove the tab now. 
+								//chrome.tabs.remove(tabs.id, function(){});
+								if (index <= 5) 
 								{
-									alert("Attack worked!");
+									attack_page(attack_strings[index++].textContent);
 								}
-								else
+								else 
 								{
-									console.log(attack_string + " This attack string didn't work");
-									// remove the tab now. 
-									//chrome.tabs.remove(tabs.id, function(){});
-									if (index <= 0) 
-									{
-										attack_page(attack_strings[index++].textContent);
-									}
-									else 
-									{
-										console.log("Tried all of the strings.");
-									}
+									console.log("Tried all of the strings.");
 								}
 							});		
 					    }  
