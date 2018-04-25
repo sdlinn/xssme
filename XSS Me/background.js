@@ -76,7 +76,7 @@ function attack_page(attack_string)
 									console.log(attack_string + " This attack string didn't work");
 									// remove the tab now. 
 									//chrome.tabs.remove(tabs.id, function(){});
-									if (index <= 0) 
+									if (index <= 2) 
 									{
 										attack_page(attack_strings[index++].textContent);
 									}
