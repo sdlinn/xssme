@@ -1,16 +1,14 @@
 // Add listener to wait for the button press from the popup. 
 chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-    	if( request.message === "open_new_tab") {
+    function(request, sender, sendResponse) 
+    {
+    	if( request.message === "open_new_tab") 
+    	{
     		// Send this to the background to reload the page.
 			chrome.runtime.sendMessage({message: "load_new_tab"});
-		} else 
-    	// if the message is do_test, execute script
-        /*if( request.message === "attack" ) {
-        	// perform attack on the web page.
-        } else*/ 
-    	// if the message is do_test, execute script
-        if( request.message === "attack" ) {
+		} 
+		else if( request.message === "attack" ) 
+		{
         	// get input elements from page to create new form from them
 			var page_inputs = document.getElementsByTagName("input");
 			var num_inputs = page_inputs.length;
@@ -18,89 +16,60 @@ chrome.runtime.onMessage.addListener(
 			// if the page has form inputs
 			if (num_inputs > 0)
 			{
-				//open XML document containing list of scripts
-				var xss_file = new XMLHttpRequest();
-			    xss_file.open("GET", chrome.extension.getURL('XSS-strings.xml'), true);
-			    xss_file.responseType = "document";
-			    xss_file.onreadystatechange = function ()
-			    {
-			        if(xss_file.readyState === 4)
-			        {
-			            if(xss_file.status === 200 || xss_file.status == 0)
-			            {
-			                var xss_xml = xss_file.response;
-							var attack_strings = xss_xml.getElementsByTagName("attackString");
-							var num_attack_strings = attack_strings.length;
+				// create a new form data 
+				var data = new FormData();
 
-							// change loop if you don't want the test to iterate through all attack strings
-							var loop = true;
-							
-							if(!loop)
-								num_attack_strings = 1;
+				// add input elements to the form - if the original ones are of type text, insert XSS
+				// test script: &<script>alert("vulnerable");</script>
+				for(var i = 0; i < num_inputs; i++)
+				{
+					if(page_inputs[i].type == 'text')
+						data.append(page_inputs[i].name, test_string);
+					else
+						data.append(page_inputs[i].name, page_inputs[i].value);
+				}
 
-							for(var i = 0; i < num_attack_strings; i++)
-							{
-								var test_string = attack_strings[i].textContent;
+                // create new XML HTTP request that will be POSTed to the page location
+				var xhr = new XMLHttpRequest();
+				xhr.open('POST', window.location.href, true);
 
-								// create a new form data 
-								var data = new FormData();
+				// add a function that will run after the XML HTTP request has loaded
+				xhr.onload = function () {
+					// create a new HTML document so we can use DOM selectors
+					var doc = document.implementation.createHTMLDocument("example");
+					// and put the contents of the response to the XML HTTP request into the document
+					doc.documentElement.innerHTML = xhr.responseText;
 
-								// add input elements to the form - if the original ones are of type text, insert XSS
-								// test script: &<script>alert("vulnerable");</script>
-								for(var i = 0; i < num_inputs; i++)
-								{
-									if(page_inputs[i].type == 'text')
-										data.append(page_inputs[i].name, test_string);
-									else
-										data.append(page_inputs[i].name, page_inputs[i].value);
-								}
+					// select all scripts from the document and count how many there are 
+					var scripts = doc.getElementsByTagName("script");
+					var num_scripts = scripts.length;
+					var vulnerable = false;
 
-				                // create new XML HTTP request that will be POSTed to the page location
-								var xhr = new XMLHttpRequest();
-								xhr.open('POST', window.location.href, true);
+					// check each script for the incidence of our XSS
+					// this will be changed later to a more generic DOM manipulation 
+					// in order to test different kinds of XSS strings 
+					//for(var i = 0; i < num_scripts; i++)
+					//{
+					if(document.vulnerable === true)
+						vulnerable = true;
+					//}
 
-								// add a function that will run after the XML HTTP request has loaded
-								xhr.onload = function () {
-									// create a new HTML document so we can use DOM selectors
-									var doc = document.implementation.createHTMLDocument("example");
-									// and put the contents of the response to the XML HTTP request into the document
-									doc.documentElement.innerHTML = xhr.responseText;
+					// report back to the popup javascript file to replace the text in the popup window
+					if(vulnerable)
+					{
+						alert("vulnerable");
+						chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
+					}
+					else
+					{
+						alert("Not vulnerable");
+						chrome.runtime.sendMessage({'message' : "not-vulnerable"});
+					}
+				};
 
-									// select all scripts from the document and count how many there are 
-									var scripts = doc.getElementsByTagName("script");
-									var num_scripts = scripts.length;
-									var vulnerable = false;
-
-									// check each script for the incidence of our XSS
-									// this will be changed later to a more generic DOM manipulation 
-									// in order to test different kinds of XSS strings 
-									//for(var i = 0; i < num_scripts; i++)
-									//{
-									if(document.vulnerable === true)
-										vulnerable = true;
-									//}
-
-									// report back to the popup javascript file to replace the text in the popup window
-									if(vulnerable)
-									{
-										alert("vulnerable");
-										chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
-									}
-									else
-									{
-										alert("Not vulnerable");
-										chrome.runtime.sendMessage({'message' : "not-vulnerable"});
-									}
-								};
-
-								// send the XML HTTP request
-								xhr.send(data);
-				            }
-				        }
-			        }
-			    }
-			    xss_file.send(null);
-			}
+				// send the XML HTTP request
+				xhr.send(data);
+            }
         }
     }
 );
