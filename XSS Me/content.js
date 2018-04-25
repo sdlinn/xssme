@@ -36,37 +36,27 @@ chrome.runtime.onMessage.addListener(
 				// add a function that will run after the XML HTTP request has loaded
 				xhr.onload = function () {
 					document.write(xhr.responseText);
-					var vulnerable = false;
-					alert("Here");
-					document.addEventListener("DOMContentLoaded", function(event) {
-						alert("Made it here??");
-						console.log(document.vulnerable);
-						if(document.vulnerable == true)
-						{
-							vulnerable = true;
-							alert("it worked!!!");
-						}
+					console.log("document.vulnerable = " + document.vulnerable);
 
-						// report back to the popup javascript file to replace the text in the popup window
-						if(vulnerable)
-						{
-							alert("vulnerable");
-							sendResponse({"success" : true});
-							//chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
-						}
-						else
-						{
-							// send a message to background that we need to try again
-							sendResponse({"success" : false});
-							//alert("Not vulnerable");
-							//chrome.runtime.sendMessage({'message' : "not-vulnerable"});
-						}
-					});
+					// report back to the popup javascript file to replace the text in the popup window
+					if(document.vulnerable == true)
+					{
+						alert("vulnerable");
+						sendResponse({"success" : true});
+						//chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
+					}
+					else
+					{
+						// send a message to background that we need to try again
+						sendResponse({"success" : false});
+						//alert("Not vulnerable");
+						//chrome.runtime.sendMessage({'message' : "not-vulnerable"});
+					}
 				};
 				// send the XML HTTP request
 				xhr.send(data);
             }
-        return true;
         }
+        return true;
     }
 );
