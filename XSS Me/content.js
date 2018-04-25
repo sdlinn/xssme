@@ -35,6 +35,8 @@ chrome.runtime.onMessage.addListener(
 
 				// add a function that will run after the XML HTTP request has loaded
 				xhr.onload = function () {
+					document.write(xhr.responseText);
+
 					// create a new HTML document so we can use DOM selectors
 					var doc = document.implementation.createHTMLDocument("example");
 					// and put the contents of the response to the XML HTTP request into the document
