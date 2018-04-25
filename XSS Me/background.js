@@ -1,3 +1,8 @@
+var attack_strings;
+var num_attack_strings;
+var index = 0;
+
+
 chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
 	    if( request.message === "load_new_tab" )
@@ -29,14 +34,14 @@ function read_attack_strings(file_url)
 	        	//if the XHR succeeds, put the file response into a variable 
 	        	//and parse the elements by tag name
 	            var xss_xml = xss_file.response;
-				var attack_strings = xss_xml.getElementsByTagName("attackString");
-				var num_attack_strings = attack_strings.length;
+				attack_strings = xss_xml.getElementsByTagName("attackString");
+				num_attack_strings = attack_strings.length;
 
 				if(num_attack_strings == 0)
 					console.log("invalid XSS attack string file - check your formatting?");
 				else
 				{
-					// change loop if you don't want the test to iterate through all attack strings
+					/** change loop if you don't want the test to iterate through all attack strings
 					var loop = false;
 					
 					if(!loop)
@@ -48,7 +53,9 @@ function read_attack_strings(file_url)
 						//...and send them to attack_page function 
 						//that will send them to content script
 						attack_page(attack_strings[i].textContent);
-		            }
+		            }**/
+		            // send first attack to the page.
+		            attack_page(attack_strings[index++].textContent);
 				}
 	        }
 	        else
@@ -70,21 +77,29 @@ function attack_page(attack_string)
 			chrome.tabs.duplicate(tab.id, function(tabs) {
 					console.log(tabs);
 					chrome.tabs.onUpdated.addListener(function (tabId , info) {
-							if (info.status === 'complete') {
-							chrome.tabs.sendMessage(tabs.id, {"message" : "attack", "tabId" : tabs.id, "attack_string" : attack_string}, 
-								function(response) 
+						if (info.status === 'complete') {
+						chrome.tabs.sendMessage(tabs.id, {"message" : "attack", "tabId" : tabs.id, "attack_string" : attack_string}, 
+							function(response) 
+							{
+								console.log(response)
+								if(response.success)
 								{
-									console.log(response)
-									if(response.success)
+									alert("Attack worked!");
+								}
+								else {
+									console.log(attack_string + " This attack string didn't work");
+									// remove the tab now. 
+									chrome.tabs.remove(tabs.id, function(){});
+									if (index <= 5) 
 									{
-										alert("Attack worked!");
+										attack_page(attack_strings[index++].textContent);
 									}
-									else {
-										console.log(attack_string + " This attack string didn't work");
-										// remove the tab now. 
-										chrome.tabs.remove(tabs.id, function(){});
+									else 
+									{
+										alert("Tried all of the strings.");
 									}
-								});		
+								}
+							});		
 					    }  
 					});
 			} );
