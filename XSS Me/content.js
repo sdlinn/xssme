@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener(
 				for(var i = 0; i < num_inputs; i++)
 				{
 					if(page_inputs[i].type == 'text')
-						data.append(page_inputs[i].name, test_string);
+						data.append(page_inputs[i].name, request.attack_string);
 					else
 						data.append(page_inputs[i].name, page_inputs[i].value);
 				}
@@ -58,18 +58,22 @@ chrome.runtime.onMessage.addListener(
 					if(vulnerable)
 					{
 						alert("vulnerable");
-						chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
+						sendResponse({"success" : true, "attack_string": request.attack_string});
+						//chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
 					}
 					else
 					{
-						alert("Not vulnerable");
-						chrome.runtime.sendMessage({'message' : "not-vulnerable"});
+						// send a message to background that we need to try again
+						sendResponse({"success" : false});
+						//alert("Not vulnerable");
+						//chrome.runtime.sendMessage({'message' : "not-vulnerable"});
 					}
 				};
 
 				// send the XML HTTP request
 				xhr.send(data);
             }
+        return true;
         }
     }
 );

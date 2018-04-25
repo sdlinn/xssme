@@ -24,14 +24,14 @@ function read_attack_strings(file_url)
 				var num_attack_strings = attack_strings.length;
 
 				// change loop if you don't want the test to iterate through all attack strings
-				var loop = true;
+				var loop = false;
 				
 				if(!loop)
-					num_attack_strings = 1;
+					num_attack_strings = 5;
 
 				for(var i = 0; i < num_attack_strings; i++)
 				{
-					attack_page(attack_strings[i].textContent);
+					attack_page(attack_strings[i].textContent); 
 	            }
 	        }
 	    }
@@ -51,9 +51,20 @@ function attack_page(attack_string)
 					console.log(tabs);
 					chrome.tabs.onUpdated.addListener(function (tabId , info) {
 							if (info.status === 'complete') {
-							chrome.tabs.sendMessage(tabs.id, {"message": "attack"} , function(response) {console.log(response)});		
-							// This sets the active tab to the original one. So we can see it. 
-							//chrome.tabs.update(tab.id, {highlighted: true});
+							chrome.tabs.sendMessage(tabs.id, {"message" : "attack", "tabId" : tabs.id, "attack_string" : attack_string}, 
+								function(response) 
+								{
+									console.log(response)
+									if(response.success)
+									{
+										alert("Attack worked!");
+									}
+									else {
+										console.log(attack_string + " This attack string didn't work");
+										// remove the tab now. 
+										chrome.tabs.remove(tabs.id, function(){});
+									}
+								});		
 					    }  
 					});
 			} );
