@@ -7,10 +7,10 @@ chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
 	    if( request.message === "load_new_tab" )
 	    {
+	    	// reset these if clicking the popup again in the same session. 
+	    	index = 0;
+	    	original_tab_id = 0;
     		read_attack_strings(null);
-	    } else if ( request.message === "Success" )
-	    {
-	    	console.log("Got some XSS");
 	    }
 	}
 );
@@ -75,8 +75,9 @@ function attack_page(attack_string)
 							{
 								if (response.success)
 								{
-									console.log(attack_string + " This attack WORKED");
-									index = num_attack_strings+1;
+									alert(attack_string + " This attack WORKED");
+									// This part stops the rest of the attacks for going on.
+									//index = num_attack_strings+1;
 								} 
 								else 
 								{
@@ -89,7 +90,7 @@ function attack_page(attack_string)
 									}
 									else 
 									{
-										console.log("Tried all of the strings.");
+										console.log("Finished");
 									}
 								}
 							});		

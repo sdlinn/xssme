@@ -43,26 +43,20 @@ chrome.runtime.onMessage.addListener(
 					        return;
 
 					    if (event.data.type && (event.data.type == "FROM_PAGE")) {
-					    	// THIS IS SUCCESSFULL 
-					    	chrome.runtime.sendMessage({message: "Success"});
-					        //alert("Successfull XSS using attack string  " + request.attack_string);
-					        sendResponse({"success" : true});
+					    	// This triggers when a successfull inject happened. 
 					        vulnerable = true;
 					    }
 					});
-					sleep(500).then(() => {
-  						  // Do something after the sleep!
-						// report back to the popup javascript file to replace the text in the popup window
+					// Had to introduce a 3 second delay so the pages wouldn't kill them selves. 
+					sleep(300).then(() => {
 						if(vulnerable)
 						{
-							alert("vulnerable");	
-							//chrome.runtime.sendMessage({'message' : "vulnerable", 'details' : "document.vulnerable=true;"});
+							sendResponse({"success" : true});
 						}
 						else
 						{
 							// send a message to background that we need to try again
 							sendResponse({"success" : false});
-							//chrome.runtime.sendMessage({'message' : "not-vulnerable"});
 						}
 					})
 				};
