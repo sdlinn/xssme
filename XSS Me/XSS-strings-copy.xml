@@ -2,12 +2,6 @@
 <attacks>
 <attack>
 <attackString>
-<![CDATA[&<script>document.vulnerable=true;</script>]]>
-</attackString>
-<signature>Script</signature>
-</attack>
-<attack>
-<attackString>
 <![CDATA[<meta http-equiv="refresh" content="0;url=javascript:document.vulnerable=true;">]]>
 </attackString>
 <signature>Script</signature>
