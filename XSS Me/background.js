@@ -1,7 +1,7 @@
 var attack_strings;
 var num_attack_strings;
 var index = 0;
-//var original_tab_id;
+var original_tab_id = 0;
 
 chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
@@ -58,10 +58,14 @@ function attack_page(attack_string)
 	// get the tab id
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 			var tab = tabs[0]
+			// Force the original tab that we are duplicating to be the same. 
+			if (original_tab_id === 0) {
+				original_tab_id = tab.id;
+			}
+			console.log("Orignal Tab id:" + original_tab_id);
 			// spawn a new tab
-			console.log("Orignal Tab id:" + tab.id);
-			chrome.tabs.duplicate(tab.id, function(tabs) {
-					console.log("New ID of new tab: " + tabs);
+			chrome.tabs.duplicate(original_tab_id, function(tabs) {
+					console.log("New ID of new tab: " + tabs.id);
 					chrome.tabs.onUpdated.addListener(function (tabId , info) {
 						if (info.status === 'complete') {
 						chrome.tabs.sendMessage(tabs.id, {"message" : "attack", "tabId" : tabs.id, "attack_string" : attack_string}, 
@@ -77,7 +81,7 @@ function attack_page(attack_string)
 									console.log(attack_string + " This attack string didn't work");
 									// remove the tab now. 
 									//chrome.tabs.remove(tabs.id, function(){});
-									if (index <= 2) 
+									if (index <= 1) 
 									{
 										attack_page(attack_strings[index++].textContent);
 									}
