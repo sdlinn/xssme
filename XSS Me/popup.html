@@ -2,13 +2,45 @@
 <link rel='stylesheet' href='css/bootstrap.min.css'>
 <script type='text/javascript' src='js/jquery.js'></script>
 <script type='text/javascript' src='js/bootstrap.min.js'></script>
-<script type='text/javascript' src='popup.js'></script>
 <html>
-	<body style="width: 300px">
+<style>
+h1 {text-align:center;}
+p {text-align:center;}
+</style>
+	<body style="width: 500px">
+	<h1 style="font-size:40px;">XSS Me: Revised</h1>
+	<p>Chrome extension that tests for reflected Cross-site scripting vulnerabilities on a page</p>
+	
+	 <form>
+    <div class="radio">
+      <label><input type="radio" name="optradio" id="r1"> Option 1</label>
+    </div>
 		<div class="alert alert-success">
- 			<strong>Test XSS</strong>
+ 			<strong>Test XSS for all input </strong>
 		</div>
+		
 		<div id="results" ></div>
 		<button id="test_xss" type="button" class="btn btn-primary">TestXSS</button>
+		<br><br>
+	<div class="radio">
+		<label><input type="radio" name="optradio" > Option 2</label>
+	</div>
+		<div class="alert alert-success">
+ 			<strong>Test for a particular input box</strong>
+		</div>
+		
+		<form id="subForm">
+		<div class="form-group">
+      <label for="input1">Enter the input tag type</label>
+      <input type="text" class="form-control" id="input1" placeholder="Enter the input tag type">
+    </div>
+		
+		<div class="form-group">
+    <label for="input2">Enter the id for the text box</label>
+    <input type="text" class="form-control" id="input2" placeholder="Enter the id for the text box">
+  </div>
+		<button id="your-id" type="button" class="btn btn-primary">Submit</button>
+		</form>
 	</body>
+<script src="popup.js"></script>
 </html>

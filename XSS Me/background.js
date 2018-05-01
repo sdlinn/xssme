@@ -2,6 +2,9 @@ var attack_strings;
 var num_attack_strings;
 var index = 0;
 var original_tab_id = 0;
+var type;
+var id;
+var bool;
 
 chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
@@ -9,9 +12,19 @@ chrome.runtime.onMessage.addListener(
 	    {
 	    	// reset these if clicking the popup again in the same session. 
 	    	index = 0;
+			bool = 0;
 	    	original_tab_id = 0;
     		read_attack_strings(null);
-	    }
+	    } else if (request.message === "customize_1") {
+			index = 0;
+	    	original_tab_id = 0;
+			bool = 1;
+			type = request.input1;
+			id = request.input2;
+			console.log(request.input1);
+			console.log(request.input2);
+			read_attack_strings(null);
+		}
 	}
 );
 
@@ -70,31 +83,60 @@ function attack_page(attack_string)
 					console.log("New ID of new tab: " + tabs.id);
 					chrome.tabs.onUpdated.addListener(function (tabId , info) {
 						if (info.status === 'complete') {
-						chrome.tabs.sendMessage(tabs.id, {"message" : "attack", "tabId" : tabs.id, "attack_string" : attack_string}, 
-							function(response) 
-							{
-								if (response.success)
+							if (bool === 1) {
+							chrome.tabs.sendMessage(tabs.id, {"message" : "attack_specific", "tabId" : tabs.id, "attack_string" : attack_string, "type" : type, "id" : id}, 
+								function(response) 
 								{
-									alert(attack_string + " This attack WORKED");
-									// This part stops the rest of the attacks for going on.
-									//index = num_attack_strings+1;
-								} 
-								else 
-								{
-									console.log(attack_string + " This attack string didn't work");
-									// remove the tab now. 
-									chrome.tabs.remove(tabs.id, function(){});
-									if (index <= num_attack_strings) 
+									if (response.success)
 									{
-										attack_page(attack_strings[index++].textContent);
-									}
+										alert(attack_string + " This attack WORKED");
+										// This part stops the rest of the attacks for going on.
+										//index = num_attack_strings+1;
+									} 
 									else 
 									{
-										console.log("Finished");
+										console.log(attack_string + " This attack string didn't work");
+										// remove the tab now. 
+										chrome.tabs.remove(tabs.id, function(){});
+										if (index <= num_attack_strings) 
+										{
+											attack_page(attack_strings[index++].textContent);
+										}
+										else 
+										{
+											console.log("Finished");
+										}
 									}
-								}
-							});		
-					    }  
+								});		
+							}
+							else if (bool === 0) {
+							chrome.tabs.sendMessage(tabs.id, {"message" : "attack", "tabId" : tabs.id, "attack_string" : attack_string}, 
+								function(response) 
+								{
+									if (response.success)
+									{
+										alert(attack_string + " This attack WORKED");
+										// This part stops the rest of the attacks for going on.
+										//index = num_attack_strings+1;
+									} 
+									else 
+									{
+										console.log(attack_string + " This attack string didn't work");
+										// remove the tab now. 
+										chrome.tabs.remove(tabs.id, function(){});
+										if (index <= num_attack_strings) 
+										{
+											attack_page(attack_strings[index++].textContent);
+										}
+										else 
+										{
+											console.log("Finished");
+										}
+									}
+								});	
+								
+							}
+						}						
 					});
 			} );
 		});
