@@ -29,6 +29,6 @@
 "browser_action": {
  "default_popup": "popup.html",
  "default_title": "Browser Security",
- "default_icon": "cookie.jpg"
+ "default_icon": "cookie.png"
  }
 }
