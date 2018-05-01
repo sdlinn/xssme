@@ -89,22 +89,28 @@ function attack_page(attack_string)
 								{
 									if (response.success)
 									{
-										alert(attack_string + " This attack WORKED");
+										alert("XSS was success with the following attack string\n" + attack_string);
 										// This part stops the rest of the attacks for going on.
 										//index = num_attack_strings+1;
+
+										index = 0;
+	    								original_tab_id = 0;
 									} 
 									else 
 									{
-										console.log(attack_string + " This attack string didn't work");
+										//console.log(attack_string + " This attack string didn't work");
 										// remove the tab now. 
 										chrome.tabs.remove(tabs.id, function(){});
-										if (index <= num_attack_strings) 
+										if (index < num_attack_strings) 
 										{
 											attack_page(attack_strings[index++].textContent);
 										}
 										else 
 										{
+											alert("This extension was unable to successfully perform and XSS attack.");
 											console.log("Finished");
+											index = 0;
+	    									original_tab_id = 0;
 										}
 									}
 								});		
@@ -115,22 +121,28 @@ function attack_page(attack_string)
 								{
 									if (response.success)
 									{
-										alert(attack_string + " This attack WORKED");
+										alert("XSS was success with the following attack string\n" + attack_string);
 										// This part stops the rest of the attacks for going on.
 										//index = num_attack_strings+1;
+
+										index = 0;
+	    								original_tab_id = 0;
 									} 
 									else 
 									{
-										console.log(attack_string + " This attack string didn't work");
 										// remove the tab now. 
 										chrome.tabs.remove(tabs.id, function(){});
-										if (index <= num_attack_strings) 
+										//console.log(attack_string + " This attack string didn't work");
+										if (index < num_attack_strings) 
 										{
 											attack_page(attack_strings[index++].textContent);
 										}
 										else 
 										{
+											alert("This extension was unable to successfully perform an XSS attack.");
 											console.log("Finished");
+											index = 0;
+	    									original_tab_id = 0;
 										}
 									}
 								});	

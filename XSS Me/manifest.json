@@ -2,7 +2,7 @@
  "manifest_version": 2,
 
 "name": "Xss Me",
- "description": "This is for the Browser Security Project",
+ "description": "Chrome extension that tests for reflected Cross-site scripting vulnerabilities on a page",
  "version": "1.0",
  "permissions":[
 	"tabs", 
